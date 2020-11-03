@@ -44,6 +44,10 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.종료XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.편집EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTestCmd1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTestCmd2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuTestCmd3 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,10 +57,8 @@
             this.stComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.tbSql = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.mnuTestCmd1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuTestCmd2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuTestCmd3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuDBUpdate = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrideView1)).BeginInit();
             this.PopupMenu1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -89,7 +91,7 @@
             // 
             // tbTest1
             // 
-            this.tbTest1.Location = new System.Drawing.Point(3, 12);
+            this.tbTest1.Location = new System.Drawing.Point(3, 14);
             this.tbTest1.Name = "tbTest1";
             this.tbTest1.Size = new System.Drawing.Size(182, 25);
             this.tbTest1.TabIndex = 2;
@@ -107,6 +109,7 @@
             this.dataGrideView1.RowTemplate.Height = 27;
             this.dataGrideView1.Size = new System.Drawing.Size(696, 286);
             this.dataGrideView1.TabIndex = 3;
+            this.dataGrideView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGrideView1_CellBeginEdit);
             // 
             // PopupMenu1
             // 
@@ -186,10 +189,38 @@
             this.mnuTestCmd1,
             this.mnuTestCmd2,
             this.toolStripMenuItem2,
-            this.mnuTestCmd3});
+            this.mnuTestCmd3,
+            this.toolStripMenuItem3,
+            this.mnuDBUpdate});
             this.편집EToolStripMenuItem.Name = "편집EToolStripMenuItem";
             this.편집EToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.편집EToolStripMenuItem.Text = "편집(E)";
+            // 
+            // mnuTestCmd1
+            // 
+            this.mnuTestCmd1.Name = "mnuTestCmd1";
+            this.mnuTestCmd1.Size = new System.Drawing.Size(224, 26);
+            this.mnuTestCmd1.Text = "DBinsert1";
+            this.mnuTestCmd1.Click += new System.EventHandler(this.mnuTestCmd1_Click);
+            // 
+            // mnuTestCmd2
+            // 
+            this.mnuTestCmd2.Name = "mnuTestCmd2";
+            this.mnuTestCmd2.Size = new System.Drawing.Size(224, 26);
+            this.mnuTestCmd2.Text = "DBinsert2";
+            this.mnuTestCmd2.Click += new System.EventHandler(this.mnuTestCmd2_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
+            // 
+            // mnuTestCmd3
+            // 
+            this.mnuTestCmd3.Name = "mnuTestCmd3";
+            this.mnuTestCmd3.Size = new System.Drawing.Size(224, 26);
+            this.mnuTestCmd3.Text = "select*Table";
+            this.mnuTestCmd3.Click += new System.EventHandler(this.mnuTestCmd3_Click);
             // 
             // openFileDialog1
             // 
@@ -277,31 +308,17 @@
             this.splitContainer1.SplitterDistance = 92;
             this.splitContainer1.TabIndex = 8;
             // 
-            // mnuTestCmd1
+            // toolStripMenuItem3
             // 
-            this.mnuTestCmd1.Name = "mnuTestCmd1";
-            this.mnuTestCmd1.Size = new System.Drawing.Size(224, 26);
-            this.mnuTestCmd1.Text = "Test 명령 1";
-            this.mnuTestCmd1.Click += new System.EventHandler(this.mnuTestCmd1_Click);
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(221, 6);
             // 
-            // mnuTestCmd2
+            // mnuDBUpdate
             // 
-            this.mnuTestCmd2.Name = "mnuTestCmd2";
-            this.mnuTestCmd2.Size = new System.Drawing.Size(224, 26);
-            this.mnuTestCmd2.Text = "Test 명령 2";
-            this.mnuTestCmd2.Click += new System.EventHandler(this.mnuTestCmd2_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
-            // 
-            // mnuTestCmd3
-            // 
-            this.mnuTestCmd3.Name = "mnuTestCmd3";
-            this.mnuTestCmd3.Size = new System.Drawing.Size(224, 26);
-            this.mnuTestCmd3.Text = "Test 명령 3";
-            this.mnuTestCmd3.Click += new System.EventHandler(this.mnuTestCmd3_Click);
+            this.mnuDBUpdate.Name = "mnuDBUpdate";
+            this.mnuDBUpdate.Size = new System.Drawing.Size(224, 26);
+            this.mnuDBUpdate.Text = "DBUpdate";
+            this.mnuDBUpdate.Click += new System.EventHandler(this.mnuDBUpdate_Click);
             // 
             // Form1
             // 
@@ -359,6 +376,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTestCmd2;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuTestCmd3;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuDBUpdate;
     }
 }
 

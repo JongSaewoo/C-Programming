@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -195,6 +196,49 @@ namespace windowTest
         private void mnuTestCmd3_Click(object sender, EventArgs e)
         {
             RunSql("Select * from facility");
+            StatusLabel3.Text = "facility";
+        }
+
+        int x, y;
+        string sHeader;
+        private void dataGrideView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            x = e.ColumnIndex;
+            y = e.RowIndex;
+            dataGrideView1.Rows[y].Cells[x].ToolTipText = ".";
+
+            sHeader = dataGrideView1.Columns[x].HeaderText;
+            // cell에 위치한곳의 header정보 즉, Field명
+        }
+
+        private void mnuDBUpdate_Click(object sender, EventArgs e)
+        // UPDATE [Table_name] SET [Field_name]='[Cell_Value]' 
+        //                    where [ID] = [ID_VALUE]
+        {
+            for(int i=0; i<dataGrideView1.RowCount; i++)
+            // ROW 쭉 검사
+            {
+                for(int j=0; j<dataGrideView1.ColumnCount; j++)
+                // COL 쭉 검사
+                {
+                    if(dataGrideView1.Rows[i].Cells[j].ToolTipText == ".")
+                    // 현재 수정한 해당 CELL
+                    {
+                        string tn = StatusLabel3.Text;  // 테이블명
+                        string fn = dataGrideView1.Columns[j].HeaderText;   // 해당 col명
+                        string cv = dataGrideView1.Rows[i].Cells[j].Value.ToString(); // 수정한 해당 cell값
+                        string iv = dataGrideView1.Columns[0].HeaderText;   // 해당 id명
+                        string a = dataGrideView1.Rows[i].Cells[0].Value.ToString();    // 수정한 해당 id값
+                        string sql = $"UPDATE {tn} SET {fn} = '{cv}' WHERE {iv} = '{a}'";
+                        RunSql(sql);
+                        dataGrideView1.Rows[i].Cells[j].ToolTipText = "";
+                        //RunSql("UPDATE " + tn + " SET = '" + sHeader + "'"
+                        //    + "WHERE ID = " + y);
+                    }
+                }
+            }
+            
+            
         }
     }
 }
