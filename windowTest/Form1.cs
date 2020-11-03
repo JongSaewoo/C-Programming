@@ -233,7 +233,7 @@ namespace windowTest
                         RunSql(sql);
                         dataGrideView1.Rows[i].Cells[j].ToolTipText = "";
                         //RunSql("UPDATE " + tn + " SET = '" + sHeader + "'"
-                        //    + "WHERE ID = " + y);
+                        //    + "WHERE ID = " + y) test;
                     }
                 }
             }
