@@ -1,0 +1,11 @@
+C:\Users\JongWooPark\source\repos\windowTest\bin\Debug\windowTest.exe.config
+C:\Users\JongWooPark\source\repos\windowTest\bin\Debug\windowTest.exe
+C:\Users\JongWooPark\source\repos\windowTest\bin\Debug\windowTest.pdb
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.csprojAssemblyReference.cache
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.Form1.resources
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.Properties.Resources.resources
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.csproj.GenerateResource.cache
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.csproj.CoreCompileInputs.cache
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.exe
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.pdb
+C:\Users\JongWooPark\source\repos\windowTest\obj\Debug\windowTest.frmInput.resources
