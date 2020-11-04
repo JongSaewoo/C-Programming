@@ -90,7 +90,8 @@ namespace windowTest
                     sConn.Open();
                     sCmd.Connection = sConn;
 
-                    StatusLabel1.Text = "Database Opened.";
+                    StatusLabel1.Text = openFileDialog1.SafeFileName; // 경로를 제외한 파일명
+                                   // = "Database Opened.";
                     StatusLabel1.BackColor = Color.Green;
 
                     DataTable dt = sConn.GetSchema("Tables");
@@ -101,7 +102,8 @@ namespace windowTest
                         // 2번째 배열요소가 Table 이름
 
                         tbSql.Text += str + "\r\n";
-                        stComboBox1.Items.Add(str);
+                        stComboBox1.Items.Add(str);   // stCombo1.DropDownItems.Add(str);
+                        stComboBox1.Text = str;
                     }    
                 }
             }
@@ -199,17 +201,22 @@ namespace windowTest
             StatusLabel3.Text = "facility";
         }
 
-        int x, y;
-        string sHeader;
         private void dataGrideView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            x = e.ColumnIndex;
-            y = e.RowIndex;
+            int x = e.ColumnIndex;
+            int y = e.RowIndex;
             dataGrideView1.Rows[y].Cells[x].ToolTipText = ".";
 
-            sHeader = dataGrideView1.Columns[x].HeaderText;
+            string sHeader = dataGrideView1.Columns[x].HeaderText;
             // cell에 위치한곳의 header정보 즉, Field명
         }
+
+        //private void toolStripDropDownButton1_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        //{
+        //    string str = e.ClickedItem.Text;    // Table 명
+        //    stComboBox1.Text = str;
+        //    RunSql($"SELECT * FROM {str}");
+        //}
 
         private void mnuDBUpdate_Click(object sender, EventArgs e)
         // UPDATE [Table_name] SET [Field_name]='[Cell_Value]' 
