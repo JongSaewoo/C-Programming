@@ -116,12 +116,17 @@ namespace WinApp1
                     sCmd.ExecuteNonQuery();     // 조회값이 없는 SQL 명령어 수행
                 }
                 else  // Select 문일 경우 조회된 데이터를 GridView에 표시
-                {
+                {   // select * from [TABLE_NAME]
                     int i, j, k;
 
                     dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();  
-                    // 새로운 테이블을 불러올 때 이전 테이블 내용들을 지우기 위해
+                    dataGridView1.Columns.Clear();
+                    string s2 = GetToken(1, sql, " ");  // Column명이 '*' 인지를 판단
+                    if (s2 == "*")
+                    {
+                        stCombo1.Text = GetToken(3, sql, " ");
+                    }
+                    else stCombo1.Text = "";
 
                     SqlDataReader sr = sCmd.ExecuteReader();
                     for(i=0;i<sr.FieldCount;i++)
@@ -133,7 +138,7 @@ namespace WinApp1
                         dataGridView1.Rows.Add();
                         for(j=0;j<sr.FieldCount;j++)  // column index
                         {
-                            dataGridView1.Rows[i].Cells[j].Value = sr.GetValue(j);
+                            dataGridView1.Rows[i].Cells[j].Value = sr.GetValue(j).ToString().Trim();
                         }
                     }
                     sr.Close();
@@ -192,7 +197,7 @@ namespace WinApp1
                         string cv = dataGridView1.Rows[i].Cells[j].Value.ToString();   // Cell Value
                         string iv = dataGridView1.Columns[0].HeaderText;   // ID Field
                         string jv = dataGridView1.Rows[i].Cells[0].Value.ToString();   // ID Value
-                        string sql = $"update {tn} set {fn}='{cv}' where {iv}='{jv}'";
+                        string sql = $"update {tn} set {fn}=N'{cv}' where {iv}='{jv}'";
                         RunSql(sql);
                         dataGridView1.Rows[i].Cells[j].ToolTipText = "";
                     }
@@ -211,16 +216,69 @@ namespace WinApp1
         {
             if(e.KeyChar == '\r')
             {
-                string str = tbSql.Text;
+                string str = tbSql.Text.Trim();
                 // 마지막 문장 (ENTER KEY 입력기준) 추출
-                // [ENTER] key value : '\r' CR(Carrage Return) 
-                // + 실제 Text에는 '\r\n'('\n'이 추가됨)
-                // Solution : '/r' 값을 구분자로 하는 GetToken 기법 사용
+                // [ENTER] key value : '\r' CR(carrage return)  + 
+                // 실제 Text에는 '\r\n' ('\n'이 추가됨)
+                // Solution : '\r' 값을 구분자로 하는 GetToken 기법 사용
                 string[] bStr = str.Split('\r');
-                string Result = bStr.Last().Trim(); // Trim -> 앞 뒤 white space 제거
-                RunSql(Result);
+                string Result = bStr.Last().Trim();  // white-space 제거
+                string s1 = GetToken(0, Result, " ").ToLower();
+                if(s1 == "select" || s1 == "insert" || s1 == "update" || s1 == "delete" 
+                   || s1 == "Create" || s1 == "alter")
+                    RunSql(Result);
             }
-            
+        }
+
+        private void mnuExcuteSql_Click(object sender, EventArgs e)
+        {
+            string str = tbSql.SelectedText;
+            RunSql(str);
+        }
+
+        private void mnuSaveTable_Click(object sender, EventArgs e)
+        {
+            int i, j, k;
+            string sTable = stCombo1.Text;
+            if(sTable == "")    // Table 명이 없으므로 새로운 Table 생성
+            {   // cleate table [TABLE_NAME] ( [COL_NAME] nchar(20),
+                frmInput dlg = new frmInput();
+                dlg.ShowDialog();
+                sTable = dlg.sRet;
+                string sql = $"create table {sTable} (";
+                for(i=0;i<dataGridView1.Columns.Count;i++)
+                {
+                    string s1 = dataGridView1.Columns[i].HeaderText; //id
+                    string sCol = $"{s1} nchar(20)";
+                    if (i < dataGridView1.Columns.Count - 1) sCol += ",";
+                    sql += sCol;
+                }
+                sql += ")";
+                RunSql(sql);
+
+                for(i=0;i<dataGridView1.RowCount-1;i++)
+                {
+                    sql = $"insert into {sTable} values (";
+                    for(j=0;j<dataGridView1.ColumnCount;j++)
+                    {
+                        sql += $"'{dataGridView1.Rows[i].Cells[j].Value}'";
+                        if (j < dataGridView1.ColumnCount - 1) sql += ",";
+                    }
+                    sql += ")";
+                    RunSql(sql);
+                }
+            }
+            else  // 기존 테이블이 있는 경우 Update
+            {
+                for (i = 0; i < dataGridView1.RowCount-1; i++)
+                {
+                    for (j = 0; j < dataGridView1.ColumnCount; j++)
+                    {
+                        dataGridView1.Rows[i].Cells[j].ToolTipText = ".";
+                    }
+                }
+                mnuDBUpdate_Click(sender, e);
+            }
         }
     }
 }
