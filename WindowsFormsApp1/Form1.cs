@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ServerEmul
+namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
@@ -17,15 +17,9 @@ namespace ServerEmul
         {
             InitializeComponent();
         }
-
-        // Client에서 보낸 socket을 받아들일 리스너 선언
-        // Client tcp open : server ip & server port 필요
-        // server open : server port만 필요
-        // TCP는 dedicated, 즉 '전속'적이다. = 양쪽 서버와 클라이언트중
-        // 한쪽이 불통이면 TCP 통신은 먹통이 됨. 고로 전속적이다(전속계약)
         TcpListener _listen;
 
-        byte[] Buffer = new byte[10000]; 
+        byte[] Buffer = new byte[10000];
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -46,6 +40,7 @@ namespace ServerEmul
             // Read()로 받은 byte데이터를 다시 string으로 인코딩해서
             // str문자객체에 담은 후 tbCommand창에 str을 뿌려준다. 
             tbCommand.Text += str + "\r\n";
+
         }
     }
 }

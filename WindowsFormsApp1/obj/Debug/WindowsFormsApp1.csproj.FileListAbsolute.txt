@@ -1,0 +1,10 @@
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb

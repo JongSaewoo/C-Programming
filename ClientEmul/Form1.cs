@@ -40,6 +40,9 @@ namespace ClientEmul
                     // .ToCharArray 배열은 byte[] 배열과 다른 배열이다.
                     // .ToCharArray = 글자열(2byte)배열, byte = 문자열(1byte) 배열
                     // -> Encoding을 통해 char배열을 byte배열로 인코딩한다...
+                    // byte배열 크기로 인코딩하는 이유???
+                    // == 서버쪽에서 GetStream할 때 받은 데이터를 Read()하면
+                    // Read할때 byte형태로 밖에 못받아들이기 때문에 인코딩함.
 
                     RetryCount = 0; // 연결이 됬으므로 재시도 횟수 0 으로 초기화.
                 }
