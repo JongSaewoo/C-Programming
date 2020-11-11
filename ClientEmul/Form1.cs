@@ -47,8 +47,8 @@ namespace ClientEmul
                     RetryCount = 0; // 연결이 됬으므로 재시도 횟수 0 으로 초기화.
                 }
             }
-            catch(Exception e)  // 연결되지 않았을 때
-            {   
+            catch (Exception e)  // 연결되지 않았을 때
+            {
                 // start버튼이 눌리면 timer가 접속 시도 -> 접속이 안된다면
                 tbRetry.Text = $"{RetryCount++}";   // 접속 시도 횟수 +1 씩
             }
@@ -74,7 +74,7 @@ namespace ClientEmul
             char[] c1 = new char[2];
 
             c1[0] = Convert.ToChar(02); // "02" : STX
-            string ss1 = c1.ToString(); 
+            string ss1 = c1.ToString();
 
             c1[0] = Convert.ToChar(03); // "03" : ETX
             string ss2 = c1.ToString();

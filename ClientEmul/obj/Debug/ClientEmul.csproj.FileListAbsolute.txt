@@ -1,0 +1,10 @@
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\bin\Debug\ClientEmul.exe.config
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\bin\Debug\ClientEmul.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\bin\Debug\ClientEmul.pdb
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.csprojAssemblyReference.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.Form1.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.Properties.Resources.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.csproj.GenerateResource.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.csproj.CoreCompileInputs.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\ClientEmul\obj\Debug\ClientEmul.pdb

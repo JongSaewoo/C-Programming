@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerEmul", "ServerEmul.csproj", "{02C2A4E3-D6C6-4E0C-83F7-C96F96C6A0BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerEmul", "ServerEmul.csproj", "{62E1DBBA-9161-45CB-A26B-05AB3B90AB7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02C2A4E3-D6C6-4E0C-83F7-C96F96C6A0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02C2A4E3-D6C6-4E0C-83F7-C96F96C6A0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02C2A4E3-D6C6-4E0C-83F7-C96F96C6A0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02C2A4E3-D6C6-4E0C-83F7-C96F96C6A0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E1DBBA-9161-45CB-A26B-05AB3B90AB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E1DBBA-9161-45CB-A26B-05AB3B90AB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E1DBBA-9161-45CB-A26B-05AB3B90AB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E1DBBA-9161-45CB-A26B-05AB3B90AB7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D838817C-92A0-4388-B71B-942F1B868FD7}
+		SolutionGuid = {8AE9EFEB-E4B9-4E3D-BA10-F14F0A062754}
 	EndGlobalSection
 EndGlobal

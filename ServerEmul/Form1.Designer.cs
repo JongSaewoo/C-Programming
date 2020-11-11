@@ -28,71 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbCommand = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbServerPort = new System.Windows.Forms.TextBox();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
+            this.btStart = new System.Windows.Forms.Button();
+            this.btStop = new System.Windows.Forms.Button();
+            this.tbCommand = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // tbCommand
-            // 
-            this.tbCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCommand.Location = new System.Drawing.Point(2, 34);
-            this.tbCommand.Multiline = true;
-            this.tbCommand.Name = "tbCommand";
-            this.tbCommand.Size = new System.Drawing.Size(343, 221);
-            this.tbCommand.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(6, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 15);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Server Port";
             // 
             // tbServerPort
             // 
-            this.tbServerPort.Location = new System.Drawing.Point(99, 5);
+            this.tbServerPort.Location = new System.Drawing.Point(91, 3);
             this.tbServerPort.Name = "tbServerPort";
-            this.tbServerPort.Size = new System.Drawing.Size(46, 25);
-            this.tbServerPort.TabIndex = 2;
+            this.tbServerPort.Size = new System.Drawing.Size(52, 25);
+            this.tbServerPort.TabIndex = 1;
             this.tbServerPort.Text = "9000";
             // 
-            // btnStart
+            // btStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(179, 5);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 3;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btStart.Location = new System.Drawing.Point(158, 3);
+            this.btStart.Name = "btStart";
+            this.btStart.Size = new System.Drawing.Size(75, 23);
+            this.btStart.TabIndex = 2;
+            this.btStart.Text = "Start";
+            this.btStart.UseVisualStyleBackColor = true;
             // 
-            // btnStop
+            // btStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(260, 5);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
+            this.btStop.Location = new System.Drawing.Point(239, 3);
+            this.btStop.Name = "btStop";
+            this.btStop.Size = new System.Drawing.Size(75, 23);
+            this.btStop.TabIndex = 3;
+            this.btStop.Text = "Stop";
+            this.btStop.UseVisualStyleBackColor = true;
+            // 
+            // tbCommand
+            // 
+            this.tbCommand.Location = new System.Drawing.Point(4, 34);
+            this.tbCommand.Multiline = true;
+            this.tbCommand.Name = "tbCommand";
+            this.tbCommand.Size = new System.Drawing.Size(333, 336);
+            this.tbCommand.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 257);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnStart);
+            this.ClientSize = new System.Drawing.Size(342, 376);
+            this.Controls.Add(this.tbCommand);
+            this.Controls.Add(this.btStop);
+            this.Controls.Add(this.btStart);
             this.Controls.Add(this.tbServerPort);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbCommand);
             this.Name = "Form1";
-            this.Text = "Server Emulator ver.1.1.";
+            this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,11 +97,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbServerPort;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btStart;
+        private System.Windows.Forms.Button btStop;
+        private System.Windows.Forms.TextBox tbCommand;
     }
 }
 
