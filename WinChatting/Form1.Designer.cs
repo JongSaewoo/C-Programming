@@ -67,8 +67,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbClient);
-            this.splitContainer1.Size = new System.Drawing.Size(392, 408);
-            this.splitContainer1.SplitterDistance = 193;
+            this.splitContainer1.Size = new System.Drawing.Size(450, 458);
+            this.splitContainer1.SplitterDistance = 221;
             this.splitContainer1.TabIndex = 0;
             // 
             // tbServer
@@ -80,7 +80,7 @@
             this.tbServer.Location = new System.Drawing.Point(0, 0);
             this.tbServer.Multiline = true;
             this.tbServer.Name = "tbServer";
-            this.tbServer.Size = new System.Drawing.Size(190, 408);
+            this.tbServer.Size = new System.Drawing.Size(218, 458);
             this.tbServer.TabIndex = 0;
             // 
             // PopupMain
@@ -95,7 +95,7 @@
             this.종료ToolStripMenuItem,
             this.mnuSend1});
             this.PopupMain.Name = "PopupMain";
-            this.PopupMain.Size = new System.Drawing.Size(211, 164);
+            this.PopupMain.Size = new System.Drawing.Size(209, 136);
             // 
             // mnuStart
             // 
@@ -145,7 +145,7 @@
             this.tbClient.Location = new System.Drawing.Point(3, 0);
             this.tbClient.Multiline = true;
             this.tbClient.Name = "tbClient";
-            this.tbClient.Size = new System.Drawing.Size(189, 408);
+            this.tbClient.Size = new System.Drawing.Size(219, 458);
             this.tbClient.TabIndex = 1;
             // 
             // statusStrip1
@@ -154,9 +154,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 461);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(396, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(454, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 437);
+            this.ClientSize = new System.Drawing.Size(454, 487);
             this.ContextMenuStrip = this.PopupMain;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
