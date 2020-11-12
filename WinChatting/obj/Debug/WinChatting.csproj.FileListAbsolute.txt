@@ -1,0 +1,10 @@
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\bin\Debug\WinChatting.exe.config
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\bin\Debug\WinChatting.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\bin\Debug\WinChatting.pdb
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.csprojAssemblyReference.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.Form1.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.Properties.Resources.resources
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.csproj.GenerateResource.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.csproj.CoreCompileInputs.cache
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.exe
+C:\Users\JongWooPark\Documents\GitHub\c#TestGitHub\WinChatting\obj\Debug\WinChatting.pdb

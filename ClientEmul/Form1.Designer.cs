@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbCommand = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tbServerIP = new System.Windows.Forms.TextBox();
@@ -46,18 +46,25 @@
             this.tbVal2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tbVal3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             this.tbSep = new System.Windows.Forms.TextBox();
+            this.ckbTimer = new System.Windows.Forms.CheckBox();
+            this.PopupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuSend1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PopupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbCommand
             // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(424, 281);
-            this.textBox1.TabIndex = 0;
+            this.tbCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCommand.ContextMenuStrip = this.PopupMenu;
+            this.tbCommand.Location = new System.Drawing.Point(3, 3);
+            this.tbCommand.Multiline = true;
+            this.tbCommand.Name = "tbCommand";
+            this.tbCommand.Size = new System.Drawing.Size(443, 281);
+            this.tbCommand.TabIndex = 0;
             // 
             // label1
             // 
@@ -67,6 +74,10 @@
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Server IP";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // tbServerIP
             // 
@@ -185,23 +196,25 @@
             this.tbVal3.TabIndex = 9;
             this.tbVal3.Text = "0200";
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.Location = new System.Drawing.Point(221, 354);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 118);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnStart.Location = new System.Drawing.Point(221, 354);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 118);
+            this.btnStart.TabIndex = 10;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click_1);
             // 
-            // button2
+            // btnStop
             // 
-            this.button2.Location = new System.Drawing.Point(347, 354);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 118);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Stop";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnStop.Location = new System.Drawing.Point(347, 354);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 118);
+            this.btnStop.TabIndex = 11;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click_1);
             // 
             // tbSep
             // 
@@ -211,14 +224,39 @@
             this.tbSep.TabIndex = 12;
             this.tbSep.Text = ",";
             // 
+            // ckbTimer
+            // 
+            this.ckbTimer.AutoSize = true;
+            this.ckbTimer.Location = new System.Drawing.Point(428, 292);
+            this.ckbTimer.Name = "ckbTimer";
+            this.ckbTimer.Size = new System.Drawing.Size(18, 17);
+            this.ckbTimer.TabIndex = 13;
+            this.ckbTimer.UseVisualStyleBackColor = true;
+            // 
+            // PopupMenu
+            // 
+            this.PopupMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.PopupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuSend1});
+            this.PopupMenu.Name = "PopupMenu";
+            this.PopupMenu.Size = new System.Drawing.Size(209, 28);
+            // 
+            // mnuSend1
+            // 
+            this.mnuSend1.Name = "mnuSend1";
+            this.mnuSend1.Size = new System.Drawing.Size(210, 24);
+            this.mnuSend1.Text = "선택된 문자열 전송";
+            this.mnuSend1.Click += new System.EventHandler(this.mnuSend1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 487);
+            this.ClientSize = new System.Drawing.Size(449, 487);
+            this.Controls.Add(this.ckbTimer);
             this.Controls.Add(this.tbSep);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.tbVal3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbVal2);
@@ -234,9 +272,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbServerIP);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbCommand);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.PopupMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +283,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox tbServerIP;
@@ -261,9 +300,12 @@
         private System.Windows.Forms.TextBox tbVal2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbVal3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.TextBox tbSep;
+        private System.Windows.Forms.CheckBox ckbTimer;
+        private System.Windows.Forms.ContextMenuStrip PopupMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuSend1;
     }
 }
 

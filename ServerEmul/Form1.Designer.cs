@@ -33,6 +33,7 @@
             this.btStart = new System.Windows.Forms.Button();
             this.btStop = new System.Windows.Forms.Button();
             this.tbCommand = new System.Windows.Forms.TextBox();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -75,14 +76,24 @@
             this.tbCommand.Location = new System.Drawing.Point(4, 34);
             this.tbCommand.Multiline = true;
             this.tbCommand.Name = "tbCommand";
-            this.tbCommand.Size = new System.Drawing.Size(333, 336);
+            this.tbCommand.Size = new System.Drawing.Size(391, 336);
             this.tbCommand.TabIndex = 4;
+            // 
+            // btnAbort
+            // 
+            this.btnAbort.Location = new System.Drawing.Point(320, 3);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(75, 23);
+            this.btnAbort.TabIndex = 5;
+            this.btnAbort.Text = "Abort";
+            this.btnAbort.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 376);
+            this.ClientSize = new System.Drawing.Size(401, 376);
+            this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.tbCommand);
             this.Controls.Add(this.btStop);
             this.Controls.Add(this.btStart);
@@ -90,6 +101,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +114,7 @@
         private System.Windows.Forms.Button btStart;
         private System.Windows.Forms.Button btStop;
         private System.Windows.Forms.TextBox tbCommand;
+        private System.Windows.Forms.Button btnAbort;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -27,7 +28,10 @@ namespace ServerEmul
                 object[] oArr = { str };
                 Invoke(f, oArr);
             }
-            tbCommand.Text += str;
+            else
+            {
+                tbCommand.Text += str;
+            }
         }
         public Form1()
         {
@@ -51,18 +55,24 @@ namespace ServerEmul
             ServerThread.Start();
         }
 
+        SqlConnection sConn = new SqlConnection();
+        SqlCommand sCmd = new SqlCommand();
+        string sConStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JongWooPark\source\repos\MyTable.mdf;Integrated Security=True;Connect Timeout=30";
         private void ServerProcess()
         {
             while (true)
             {
+                // Packet data : [STX]100001, 1200, 3000, 0200[ETX]
+
                 TcpClient _client = _listen.AcceptTcpClient();
                 // _listen.AcceptTcpClient()로 받은 socket을 
                 // TcpClient _client로 세션에 저장할수 있도록 선언.
 
                 NetworkStream ns = _client.GetStream();
                 // 파일스트림처럼 클라이언트와 서버를 연결시킬 통로 객체 ns 선언.
-                ns.Read(Buffer, 0, 10000);
+                int n = ns.Read(Buffer, 0, 10000);
                 // 담을 그릇 Buffer, 최소크기 0, 최대크기 10000
+
                 string str = Encoding.Default.GetString(Buffer);
                 // 클라이언트에서 string 데이터를 Stream(통로)에 전송하기위해
                 // byte 데이터로 인코딩했다면 서버에서는 GetStream을 통해
@@ -75,12 +85,37 @@ namespace ServerEmul
                 // AddText 함수를 따로 선언하고 이 함수를 invoke화시켜
                 // delegate를 이용하여 뿌린 str값들의 주소를 가리키는
                 // 포인터 역할의 AddText를 완성시킨다.
+
+                string ss1 = str.Substring(0, n).Replace('\u0002', ' '); 
+                // STX ==> ' '  , 문자열 뒤의 '\0' 제거
+                string ss2 = ss1.Replace('\u0003', ' ');   // ETX ==> ' '
+
+                string[] sArr = str.Split(',');
+                string s1 = sArr[0].Trim();
+                string s4 = sArr[3].Trim();
+                string st = DateTime.Now.ToString();
+                string sql = $"insert into fstatus " +
+                    $"values ('{s1}','{sArr[1]}','{sArr[2]}','{s4}','{st}')";
+                sCmd.CommandText = sql;
+                sCmd.ExecuteNonQuery();
             }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             ServerThread.Suspend();
+        }
+
+        private void btnAbort_Click(object sender, EventArgs e)
+        {
+            ServerThread.Abort();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            sConn.ConnectionString = sConStr;
+            sConn.Open();
+            sCmd.Connection = sConn;
         }
     }
 }
