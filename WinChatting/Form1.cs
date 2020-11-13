@@ -68,11 +68,25 @@ namespace WinChatting
         // 모든 쓰레드의 메소드 구성 : 접속 요청 수락시까지만 ...
         {
             _listen.Start();
-            // 소켓에게서 접속 요청을 받을 리스너 start
-            _socket = _listen.AcceptTcpClient();
-            // 소켓의 접속 요청
-            AddText($"Connected to Remote Client..[{_socket.Client.RemoteEndPoint.ToString()}]\r\n", 0);
-            // 요청상태[요청한 포트번호]에 대해 출력
+
+            while(true)
+            // while, if, break를 통해 프로세스 정상적으로 ON,OFF
+            // 없으면 앞서 실행했던 프로세스가 정상적으로 종료가 안되서 계속 굴러감.
+            // 클라이언트와 달리 서버 소켓에서는 TimeOut을 지정할 수 없기 때문에
+            // 따로 메소드를 구현하였다.
+            {
+                if(_listen.Pending())
+                {
+                    // 소켓에게서 접속 요청을 받을 리스너 start
+                    _socket = _listen.AcceptTcpClient();
+                    // 소켓의 접속 요청
+                    AddText($"Connected to Remote Client..[{_socket.Client.RemoteEndPoint.ToString()}]\r\n", 0);
+                    // 요청상태[요청한 포트번호]에 대해 출력
+
+                    break;
+                }
+            }
+
         }
 
         public void ReadProcess()
@@ -146,6 +160,46 @@ namespace WinChatting
 
         }
 
+        // 프로세스 종료
+        private void Form1_Formclosed(object sender, FormClosedEventArgs e)
+        {
+            if(_Sessionthread != null)
+            {
+                _Sessionthread.Interrupt();
+                _Sessionthread.Abort();
+            }
+            if(_ReadThread != null)
+            {
+                _ReadThread.Interrupt();
+                _ReadThread.Abort();
+            }
+            if(_ClientThread != null)
+            {
+                _ClientThread.Interrupt();
+                _ClientThread.Abort();
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_Sessionthread != null)
+            {
+                _Sessionthread.Interrupt();
+                _Sessionthread.Abort();
+            }
+            if (_ReadThread != null)
+            {
+                _ReadThread.Interrupt();
+                _ReadThread.Abort();
+            }
+            if (_ClientThread != null)
+            {
+                _ClientThread.Interrupt();
+                _ClientThread.Abort();
+            }
+        }
+
+
         ///////////////////   Client Mode methods   ///////////////////////
         // Target(server) IP/Port에 대하여 접속 요청
         // -Socket
@@ -182,6 +236,9 @@ namespace WinChatting
             if (_sock.Connected)
             {
                 _ClientThread = new Thread(ClientProcess);
+                _sock.ReceiveTimeout = 1000;    
+                // 1초의 딜레이를 주며 타임아웃을 구성
+                // ClientProcess에서 정상적인 프로세스 종료 메커니즘을 위해 선언.                                 
                 _ClientThread.Start();
             }
         }
