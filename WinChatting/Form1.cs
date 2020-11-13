@@ -161,26 +161,26 @@ namespace WinChatting
         }
 
         // 프로세스 종료
-        private void Form1_Formclosed(object sender, FormClosedEventArgs e)
+        private void Form1_FormClosed_1(object sender, FormClosedEventArgs e)
         {
-            if(_Sessionthread != null)
+            if (_Sessionthread != null)
             {
                 _Sessionthread.Interrupt();
                 _Sessionthread.Abort();
             }
-            if(_ReadThread != null)
+            if (_ReadThread != null)
             {
                 _ReadThread.Interrupt();
                 _ReadThread.Abort();
             }
-            if(_ClientThread != null)
+            if (_ClientThread != null)
             {
                 _ClientThread.Interrupt();
                 _ClientThread.Abort();
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             if (_Sessionthread != null)
             {
@@ -212,20 +212,24 @@ namespace WinChatting
 
         private void ClientProcess()    // clientEmul에 ReadProcess와 같음
         {
-            try
+            while (true)
             {
-                while (true)
+                try
                 {
                     Thread.Sleep(20);
                     int n = _sock.Receive(bArr); // Low level socket method
                     string str = Encoding.Default.GetString(bArr, 0, n) + "\r\n";
                     AddText(str, 1);
                 }
-            }
-            catch (Exception e)
-            {
-                string s1 = $"오류 : {e.Message}\r\n";
-                AddText(s1, 1);
+                catch (SocketException e)
+                {
+                    if(e.SocketErrorCode == SocketError.TimedOut)
+                    {
+                        string s1 = $"오류 : {e.Message}\r\n";
+                        AddText(s1, 1);
+                        return; // 비정상 오류에 의한 쓰레드 종료
+                    }
+                }
             }
         }
 
@@ -247,7 +251,6 @@ namespace WinChatting
         {
 
         }
-
     }
     // mnuStart -> 서버or클라이언트 요청 : 세션 및 리드 프로세스 구동
     //              -> start -> 세션에서 데이터 받을준비 ->socket ->(timer)

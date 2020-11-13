@@ -40,20 +40,20 @@
             this.종료ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSend1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tbClient = new System.Windows.Forms.TextBox();
+            this.PopupClient = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuClientStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuClientStop = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.PopupClient = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuClientStart = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuClientStop = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.PopupMain.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.PopupClient.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -106,7 +106,7 @@
             // 
             this.mnuStart.Name = "mnuStart";
             this.mnuStart.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.G)));
-            this.mnuStart.Size = new System.Drawing.Size(210, 24);
+            this.mnuStart.Size = new System.Drawing.Size(208, 24);
             this.mnuStart.Text = "Start";
             this.mnuStart.Click += new System.EventHandler(this.mnuStart_Click);
             // 
@@ -114,39 +114,39 @@
             // 
             this.mnuServerStop.Name = "mnuServerStop";
             this.mnuServerStop.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.mnuServerStop.Size = new System.Drawing.Size(210, 24);
+            this.mnuServerStop.Size = new System.Drawing.Size(208, 24);
             this.mnuServerStop.Text = "Stop";
             this.mnuServerStop.Click += new System.EventHandler(this.mnuServerStop_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(205, 6);
             // 
             // mnuSetup
             // 
             this.mnuSetup.Name = "mnuSetup";
             this.mnuSetup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
-            this.mnuSetup.Size = new System.Drawing.Size(210, 24);
+            this.mnuSetup.Size = new System.Drawing.Size(208, 24);
             this.mnuSetup.Text = "Setup";
             this.mnuSetup.Click += new System.EventHandler(this.mnuSetup_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(205, 6);
             // 
             // 종료ToolStripMenuItem
             // 
             this.종료ToolStripMenuItem.Name = "종료ToolStripMenuItem";
             this.종료ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F5)));
-            this.종료ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.종료ToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
             this.종료ToolStripMenuItem.Text = "종료";
             // 
             // mnuSend1
             // 
             this.mnuSend1.Name = "mnuSend1";
-            this.mnuSend1.Size = new System.Drawing.Size(210, 24);
+            this.mnuSend1.Size = new System.Drawing.Size(208, 24);
             this.mnuSend1.Text = "선택된 메시지 전송";
             this.mnuSend1.Click += new System.EventHandler(this.mnuSend1_Click);
             // 
@@ -161,6 +161,29 @@
             this.tbClient.Name = "tbClient";
             this.tbClient.Size = new System.Drawing.Size(219, 458);
             this.tbClient.TabIndex = 1;
+            // 
+            // PopupClient
+            // 
+            this.PopupClient.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.PopupClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuClientStart,
+            this.mnuClientStop});
+            this.PopupClient.Name = "PopupClient";
+            this.PopupClient.Size = new System.Drawing.Size(144, 52);
+            // 
+            // mnuClientStart
+            // 
+            this.mnuClientStart.Name = "mnuClientStart";
+            this.mnuClientStart.Size = new System.Drawing.Size(143, 24);
+            this.mnuClientStart.Text = "접속 요청";
+            this.mnuClientStart.Click += new System.EventHandler(this.mnuClientStart_Click);
+            // 
+            // mnuClientStop
+            // 
+            this.mnuClientStop.Name = "mnuClientStop";
+            this.mnuClientStop.Size = new System.Drawing.Size(143, 24);
+            this.mnuClientStop.Text = "접속 종료";
+            this.mnuClientStop.Click += new System.EventHandler(this.mnuClientStop_Click);
             // 
             // statusStrip1
             // 
@@ -190,29 +213,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // PopupClient
-            // 
-            this.PopupClient.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.PopupClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuClientStart,
-            this.mnuClientStop});
-            this.PopupClient.Name = "PopupClient";
-            this.PopupClient.Size = new System.Drawing.Size(211, 80);
-            // 
-            // mnuClientStart
-            // 
-            this.mnuClientStart.Name = "mnuClientStart";
-            this.mnuClientStart.Size = new System.Drawing.Size(210, 24);
-            this.mnuClientStart.Text = "접속 요청";
-            this.mnuClientStart.Click += new System.EventHandler(this.mnuClientStart_Click);
-            // 
-            // mnuClientStop
-            // 
-            this.mnuClientStop.Name = "mnuClientStop";
-            this.mnuClientStop.Size = new System.Drawing.Size(210, 24);
-            this.mnuClientStop.Text = "접속 종료";
-            this.mnuClientStop.Click += new System.EventHandler(this.mnuClientStop_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -223,6 +223,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Cocoa ver.2.1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing_1);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed_1);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -230,9 +232,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.PopupMain.ResumeLayout(false);
+            this.PopupClient.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.PopupClient.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
