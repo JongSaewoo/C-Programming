@@ -33,23 +33,27 @@
             this.tbServer = new System.Windows.Forms.TextBox();
             this.PopupMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuStart = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuServerStop = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSetup = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.종료ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSend1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tbClient = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mnuSend1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PopupClient = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuClientStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuClientStop = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.PopupMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.PopupClient.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -82,15 +86,16 @@
             this.tbServer.Name = "tbServer";
             this.tbServer.Size = new System.Drawing.Size(218, 458);
             this.tbServer.TabIndex = 0;
+            this.tbServer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbServer_KeyPress);
             // 
             // PopupMain
             // 
             this.PopupMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.PopupMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuStart,
-            this.stopToolStripMenuItem,
+            this.mnuServerStop,
             this.toolStripMenuItem1,
-            this.setupToolStripMenuItem,
+            this.mnuSetup,
             this.toolStripMenuItem2,
             this.종료ToolStripMenuItem,
             this.mnuSend1});
@@ -105,24 +110,26 @@
             this.mnuStart.Text = "Start";
             this.mnuStart.Click += new System.EventHandler(this.mnuStart_Click);
             // 
-            // stopToolStripMenuItem
+            // mnuServerStop
             // 
-            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.stopToolStripMenuItem.Text = "Stop";
+            this.mnuServerStop.Name = "mnuServerStop";
+            this.mnuServerStop.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
+            this.mnuServerStop.Size = new System.Drawing.Size(210, 24);
+            this.mnuServerStop.Text = "Stop";
+            this.mnuServerStop.Click += new System.EventHandler(this.mnuServerStop_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
             // 
-            // setupToolStripMenuItem
+            // mnuSetup
             // 
-            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            this.setupToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
-            this.setupToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.setupToolStripMenuItem.Text = "Setup";
+            this.mnuSetup.Name = "mnuSetup";
+            this.mnuSetup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
+            this.mnuSetup.Size = new System.Drawing.Size(210, 24);
+            this.mnuSetup.Text = "Setup";
+            this.mnuSetup.Click += new System.EventHandler(this.mnuSetup_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -136,12 +143,19 @@
             this.종료ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.종료ToolStripMenuItem.Text = "종료";
             // 
+            // mnuSend1
+            // 
+            this.mnuSend1.Name = "mnuSend1";
+            this.mnuSend1.Size = new System.Drawing.Size(210, 24);
+            this.mnuSend1.Text = "선택된 메시지 전송";
+            this.mnuSend1.Click += new System.EventHandler(this.mnuSend1_Click);
+            // 
             // tbClient
             // 
             this.tbClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbClient.ContextMenuStrip = this.PopupMain;
+            this.tbClient.ContextMenuStrip = this.PopupClient;
             this.tbClient.Location = new System.Drawing.Point(3, 0);
             this.tbClient.Multiline = true;
             this.tbClient.Name = "tbClient";
@@ -176,12 +190,28 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // mnuSend1
+            // PopupClient
             // 
-            this.mnuSend1.Name = "mnuSend1";
-            this.mnuSend1.Size = new System.Drawing.Size(210, 24);
-            this.mnuSend1.Text = "선택된 메시지 전송";
-            this.mnuSend1.Click += new System.EventHandler(this.mnuSend1_Click);
+            this.PopupClient.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.PopupClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuClientStart,
+            this.mnuClientStop});
+            this.PopupClient.Name = "PopupClient";
+            this.PopupClient.Size = new System.Drawing.Size(211, 80);
+            // 
+            // mnuClientStart
+            // 
+            this.mnuClientStart.Name = "mnuClientStart";
+            this.mnuClientStart.Size = new System.Drawing.Size(210, 24);
+            this.mnuClientStart.Text = "접속 요청";
+            this.mnuClientStart.Click += new System.EventHandler(this.mnuClientStart_Click);
+            // 
+            // mnuClientStop
+            // 
+            this.mnuClientStop.Name = "mnuClientStop";
+            this.mnuClientStop.Size = new System.Drawing.Size(210, 24);
+            this.mnuClientStop.Text = "접속 종료";
+            this.mnuClientStop.Click += new System.EventHandler(this.mnuClientStop_Click);
             // 
             // Form1
             // 
@@ -202,6 +232,7 @@
             this.PopupMain.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.PopupClient.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,13 +248,16 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem mnuStart;
-        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuServerStop;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuSetup;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem 종료ToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem mnuSend1;
+        private System.Windows.Forms.ContextMenuStrip PopupClient;
+        private System.Windows.Forms.ToolStripMenuItem mnuClientStart;
+        private System.Windows.Forms.ToolStripMenuItem mnuClientStop;
     }
 }
 

@@ -14,20 +14,27 @@ namespace WinChatting
 {
     public partial class Form1 : Form   // Ethernet Chatting
     {
-        delegate void AddTextCallback(string str);
+        delegate void AddTextCallback(string str, int n);
 
-        public void AddText(string str)
+        public void AddText(string str, int n)
         {
             // 쓰레드를 구성하기 위해선 -> delegate선언 -> Invoke화
-            if(tbServer.InvokeRequired)
+            if (tbServer.InvokeRequired)
             {
                 AddTextCallback cb = new AddTextCallback(AddText);
-                object[] ob = { str };
+                object[] ob = { str, n };
                 Invoke(cb, ob);
             }
             else
             {
-                tbServer.Text += str;
+                if (n == 0) // 서버에 텍스트 보낼때 n = 0
+                {
+                    tbServer.Text += str;
+                }
+                else if (n == 1) // 클라이언트에 텍스트 보낼때 n = 1
+                {
+                    tbClient.Text += str;
+                }
             }
         }
         public Form1()
@@ -49,7 +56,7 @@ namespace WinChatting
             if(_listen == null)
                 _listen = new TcpListener(ServerPort);
 
-            AddText($"Chatting Server Started.[{ServerPort}]");
+            AddText($"Chatting Server Started.[{ServerPort}]\r\n", 0);
             _Sessionthread = new Thread(ServerProcess); // 쓰레드 준비
             _Sessionthread.Start();
             // 쓰레드 시작 : 준비단계에서 백그라운드로 실행된 ServerProcess를 시작
@@ -64,7 +71,7 @@ namespace WinChatting
             // 소켓에게서 접속 요청을 받을 리스너 start
             _socket = _listen.AcceptTcpClient();
             // 소켓의 접속 요청
-            AddText($"Connected to Remote Client..[{_socket.Client.RemoteEndPoint.ToString()}]\r\n");
+            AddText($"Connected to Remote Client..[{_socket.Client.RemoteEndPoint.ToString()}]\r\n", 0);
             // 요청상태[요청한 포트번호]에 대해 출력
         }
 
@@ -84,14 +91,14 @@ namespace WinChatting
                     // byte 데이터로 인코딩했다면 서버에서는 GetStream을 통해
                     // Read()로 받은 byte데이터를 다시 string으로 인코딩해서
                     // str문자객체에 담은 후 tbCommand창에 str을 뿌려준다. 
-                    AddText(str + "\r\n");
+                    AddText(str + "\r\n", 0);
                 }
             }
             catch(Exception e)
             // 오류 처리
             {
                 string s1 = $"오류:{e.Message}\r\n";
-                AddText(s1);
+                AddText(s1, 0);
             }
             
         }
@@ -106,20 +113,84 @@ namespace WinChatting
             }
         }
 
-        private void mnuSend1_Click(object sender, EventArgs e)
+        public void SendString(string str)
         {
-            if(_socket != null)
+            if (_sock != null)
             {
-                NetworkStream ns = _socket.GetStream(); 
-                // 세션에 보내기위해 스트림 구동
-                string str = tbClient.SelectedText; 
-                // 보낼 데이터 구성
                 byte[] bArr1 = Encoding.Default.GetBytes(str);
-                // 데이터를 스트림에 집어넣기위해서 바이트로 인코딩
-                ns.Write(bArr1, 0, bArr1.Length);
-
+                _sock.Send(bArr1);
             }
         }
+
+        private void mnuSend1_Click(object sender, EventArgs e)
+        {
+            SendString(tbClient.SelectedText);
+        }
+
+        private void tbServer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                string str = tbClient.Text.Trim().Split('\r').Last();
+                SendString(str);
+            }
+        }
+
+        private void mnuServerStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuSetup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        ///////////////////   Client Mode methods   ///////////////////////
+        // Target(server) IP/Port에 대하여 접속 요청
+        // -Socket
+        // -Connect 사용
+        // Client method ReadThread
+        string RemoteIP = "192.168.0.148";  // 나의 IP
+        int RemotePort = 9000;
+        Thread _ClientThread;
+        Socket _sock;   // 'TcpClient _socket;' 과 다름
+
+        private void ClientProcess()    // clientEmul에 ReadProcess와 같음
+        {
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(20);
+                    int n = _sock.Receive(bArr); // Low level socket method
+                    string str = Encoding.Default.GetString(bArr, 0, n) + "\r\n";
+                    AddText(str, 1);
+                }
+            }
+            catch (Exception e)
+            {
+                string s1 = $"오류 : {e.Message}\r\n";
+                AddText(s1, 1);
+            }
+        }
+
+        private void mnuClientStart_Click(object sender, EventArgs e)
+        {
+            _sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _sock.Connect(RemoteIP, RemotePort);
+            if (_sock.Connected)
+            {
+                _ClientThread = new Thread(ClientProcess);
+                _ClientThread.Start();
+            }
+        }
+
+        private void mnuClientStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
     // mnuStart -> 서버or클라이언트 요청 : 세션 및 리드 프로세스 구동
     //              -> start -> 세션에서 데이터 받을준비 ->socket ->(timer)
